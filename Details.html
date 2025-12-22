@@ -1,23 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Hearthstone OAuth Demo</title>
-    <link rel="stylesheet" href="style.css" />
-
-
+  <meta charset="UTF-8">
+  <title>Hearthstone Project Details</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Navigation Bar -->
   <nav class="main-nav">
     <ul>
       <li><a href="CardSearch.html">Card Search</a></li>
-      <li><a href="Details.html">Site Details</a></li>
+      <li><a href="Details.html">Project Details</a></li>
       <li><a href="Favorites.html">Favorites</a></li>
     </ul>
   </nav>
 
+  <main style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+    <h1>Hearthstone Card Project – Details</h1>
 
+    <section>
+      <h2>Project Overview</h2>
+      <p>
+        This project allows users to browse Hearthstone cards by expansion, view card details, and save favorite cards to a database. 
+        It demonstrates the use of external APIs, JavaScript, and a Supabase backend to store user favorites.
+      </p>
+    </section>
 
+    <section>
+      <h2>How the Project Works</h2>
+      <ol>
+        <li>
+          <strong>Card Search:</strong> Users select an expansion from the dropdown. Cards are dynamically loaded from the 
+          <a href="https://develop.battle.net/documentation/hearthstone/guides/getting-started">Hearthstone API</a> using <code>fetch()</code>.
+        </li>
+        <li>
+          <strong>Favorites:</strong> Each card has a "⭐ Add to Favorites" button. Clicking it saves the card to a Supabase database table. 
+          Users can view all saved favorites on the Favorites page.
+        </li>
+        <li>
+          <strong>Details Page:</strong> Provides instructions and explains how the project works. It also describes the APIs used and functionality.
+        </li>
+      </ol>
+    </section>
 
+    <section>
+      <h2>APIs and Technologies Used</h2>
+      <ul>
+        <li><strong>Hearthstone API:</strong> Provides card data including images, names, and expansions.</li>
+        <li><strong>Supabase:</strong> Used for storing and retrieving favorite cards. This demonstrates CRUD functionality on a cloud database.</li>
+        <li><strong>Fetch API:</strong> Used to retrieve data asynchronously from both external APIs and the database.</li>
+        <li><strong>JavaScript:</strong> Handles DOM manipulation, event listeners, and dynamic content rendering.</li>
+        <li><strong>CSS Grid & Styling:</strong> Responsive layout for cards and favorites.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>How to Use the Application</h2>
+      <ol>
+        <li>Go to the <strong>Card Search</strong> page.</li>
+        <li>Select an expansion from the dropdown and click "Load Cards".</li>
+        <li>Browse through the cards. Click "⭐ Add to Favorites" to save a card.</li>
+        <li>Go to the <strong>Favorites</strong> page to view all saved cards.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Notes</h2>
+      <ul>
+        <li>The application requires an internet connection to fetch card data from the Hearthstone API.</li>
+        <li>Favorites are stored in Supabase and persist across sessions.</li>
+        <li>For full functionality, make sure your API keys and Supabase keys are correctly configured.</li>
+      </ul>
+    </section>
+
+    <footer style="margin-top: 40px; text-align: center; font-size: 0.9em; color: #555;">
+      &copy; 2025 Hearthstone Card Project
+    </footer>
+  </main>
 </body>
 </html>
-
