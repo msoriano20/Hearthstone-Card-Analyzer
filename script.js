@@ -27,6 +27,9 @@ document.addEventListener("DOMContentLoaded", loadExpansions);
 document.getElementById("loadBtn").addEventListener("click", loadCards);
 
 
+
+
+
 async function loadExpansions() {
   const token = await getAccessToken();
 
@@ -54,6 +57,10 @@ async function loadExpansions() {
   });
 }
 
+function getRandomCards(cards, count = 10) {
+  const shuffled = [...cards].sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, count);
+}
 
 async function loadCards() {
   
@@ -113,11 +120,43 @@ async function loadCards() {
             li.appendChild(favBtn);
             list.appendChild(li);
         }); 
-    }
+    const carouselContainer = document.getElementById("carousel-slides");
+    carouselContainer.innerHTML = ""; // clear previous slides
+    const randomCards = getRandomCards(allCards, 10);
 
-    catch (err) {
-        console.error("Error:", err);
-    }
+    randomCards.forEach(card => {
+      const li = document.createElement("li");
+      li.className = "glide__slide";
+
+      const img = document.createElement("img");
+      img.src = card.image;
+      img.alt = card.name;
+      img.width = 150;
+
+      const caption = document.createElement("p");
+      caption.textContent = card.name;
+
+      li.appendChild(img);
+      li.appendChild(caption);
+      carouselContainer.appendChild(li);
+    });
+
+    // Initialize Glide.js
+    new Glide('#card-carousel', {
+      type: 'carousel',
+      startAt: 0,
+      perView: 4,
+      gap: 20,
+      breakpoints: {
+        1024: { perView: 3 },
+        768: { perView: 2 },
+        480: { perView: 1 }
+      }
+    }).mount();
+
+  } catch (err) {
+    console.error("Error loading cards:", err);
+  }
 }
 
 
