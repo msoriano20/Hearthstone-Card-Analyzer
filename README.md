@@ -24,4 +24,4 @@ This manual is intended for developers who will continue working on this applica
 ### Installing the Application
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/hearthstone-card-browser.git
+git clone https://github.com/msoriano20/Hearthstone-Card-Analyzer
