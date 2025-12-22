@@ -1,3 +1,7 @@
+const supabaseUrl = 'https://guseczisjjocqqcxqgiv.supabase.co'
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1c2VjemlzampvY3FxY3hxZ2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYzMjUxNjcsImV4cCI6MjA4MTkwMTE2N30.Qq5hWSGeFfnuiFqndDfkZI8H3sobicv5v_ZpUglzcwo'
+const supabase = window.supabase.createClient(supabaseUrl, supabaseKey)
+
 const CLIENT_ID = "29de47bd890d4a0891c357939c78f270";
 const CLIENT_SECRET = "VwyFC8fxlKTVCIXth6d7vQdX1xkkwb6a";
 
@@ -48,7 +52,6 @@ async function loadExpansions() {
 }
 
 
-
 async function loadCards() {
     try {
         async function fetchAllCards() {
@@ -63,9 +66,9 @@ async function loadCards() {
             while (page <= pageCount) {
                 const url = `https://us.api.blizzard.com/hearthstone/cards?locale=en_US&set=${set}&page=${page}`;
                 const response = await fetch(url, {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
+                  headers: {
+                      "Authorization": `Bearer ${token}`
+                  }
                 });
                 const data = await response.json();
 
@@ -96,8 +99,14 @@ async function loadCards() {
             const name = document.createElement("p");
             name.textContent = card.name;
 
+            // ⭐ FAVORITES BUTTON
+            const favBtn = document.createElement("button");
+            favBtn.textContent = "⭐ Add to Favorites";
+            favBtn.onclick = () => addToFavorites(card);
+
             li.appendChild(img);
             li.appendChild(name);
+            li.appendChild(favBtn);
             list.appendChild(li);
         }); 
     }
@@ -105,6 +114,26 @@ async function loadCards() {
     catch (err) {
         console.error("Error:", err);
     }
+}
+
+async function addToFavorites(card) {
+  const { error } = await supabase
+    .from("favorites")
+    .insert([
+      {
+        card_id: card.id,
+        name: card.name,
+        image: card.image,
+        set: card.cardSetSlug
+      }
+    ]);
+
+  if (error) {
+    console.error("Supabase error:", error);
+    alert("Failed to add favorite");
+  } else {
+    alert(`${card.name} added to favorites ⭐`);
+  }
 }
 
 loadExpansions
