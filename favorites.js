@@ -7,6 +7,7 @@ const supabaseClient = supabase.createClient(
   SUPABASE_KEY
 );
 
+
 async function loadFavorites() {
   const { data, error } = await supabaseClient
     .from("favorites")
@@ -18,6 +19,7 @@ async function loadFavorites() {
   }
 
   const list = document.getElementById("favorites");
+  list.innerHTML = ""; // Clear previous list
 
   data.forEach(card => {
     const li = document.createElement("li");
@@ -29,10 +31,30 @@ async function loadFavorites() {
     const name = document.createElement("p");
     name.textContent = card.name;
 
+    // Delete button
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "🗑 Remove";
+    deleteBtn.onclick = async () => {
+      const { error } = await supabaseClient
+        .from("favorites")
+        .delete()
+        .eq('card_id', card.card_id);
+
+      if (error) {
+        console.error("Delete error:", error);
+        alert("Failed to remove card.");
+      } else {
+        alert(`${card.name} removed from favorites.`);
+        loadFavorites(); // Refresh the list
+      }
+    };
+
     li.appendChild(img);
     li.appendChild(name);
+    li.appendChild(deleteBtn);
     list.appendChild(li);
   });
 }
 
-loadFavorites();
+// Load favorites on page load
+document.addEventListener("DOMContentLoaded", loadFavorites);
