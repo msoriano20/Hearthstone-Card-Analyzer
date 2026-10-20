@@ -1,6 +1,6 @@
 import { createClient } from 'https://esm.sh/@supabase/supabase-js'
 const cardSupabaseUrl = 'https://guseczisjjocqqcxqgiv.supabase.co'
-const cardSupabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1c2VjemlzampvY3FxY3hxZ2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYzMjUxNjcsImV4cCI6MjA4MTkwMTE2N30.Qq5hWSGeFfnuiFqndDfkZI8H3sobicv5v_ZpUglzcwo'
+const cardSupabaseKey = 'sb_publishable_G4LmSfzTnbpHoc2wJKGEkA_3E0jJWgy'
 const cardSupabase = createClient(cardSupabaseUrl, cardSupabaseKey)
 
 const CLIENT_ID = "29de47bd890d4a0891c357939c78f270";

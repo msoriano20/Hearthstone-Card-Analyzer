@@ -1,5 +1,5 @@
 const SUPABASE_URL = 'https://guseczisjjocqqcxqgiv.supabase.co'
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imd1c2VjemlzampvY3FxY3hxZ2l2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjYzMjUxNjcsImV4cCI6MjA4MTkwMTE2N30.Qq5hWSGeFfnuiFqndDfkZI8H3sobicv5v_ZpUglzcwo'
+const SUPABASE_KEY = 'sb_publishable_G4LmSfzTnbpHoc2wJKGEkA_3E0jJWgy'
 
 
 const supabaseClient = supabase.createClient(
